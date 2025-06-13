@@ -1,0 +1,182 @@
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Tecnologías de la Información y la Comunicación</title>
+</head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      text-align: center;
+    }
+
+    header {
+      background-color: #004d99;
+      color: white;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    header img {
+      height: 60px;
+      margin-right: 20px;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+      gap: 10px;
+    }
+
+    .tab {
+      background-color: #ddd;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .tab:hover {
+      background-color: #ccc;
+    }
+
+    .tab.active {
+      background-color: #004d99;
+      color: white;
+    }
+
+    .materias-container {
+      margin-top: 30px;
+      padding: 20px;
+      min-height: 200px;
+    }
+
+    .materia {
+      margin-bottom: 30px;
+    }
+
+    .materia h3 {
+      color: #333;
+    }
+
+    .materia p {
+      color: #444;
+      font-size: 16px;
+    }
+
+    .materia img {
+      width: 200px;
+      margin-top: 10px;
+      border-radius: 5px;
+    }
+  </style>
+<body>
+<header>
+  <img src="C:\Users\pc 5\Downloads\tic\tic.png" alt="Logo">
+  <h1>Tecnologías de la Información y la Comunicación</h1>
+</header>
+
+<div class="tabs">
+  <div class="tab" onclick="mostrarMaterias(3)">3er semestre</div>
+  <div class="tab" onclick="mostrarMaterias(4)">4to semestre</div>
+  <div class="tab" onclick="mostrarMaterias(5)">5to semestre</div>
+  <div class="tab" onclick="mostrarMaterias(6)">6to semestre</div>
+</div>
+
+<div class="materias-container" id="materias-container"></div>
+
+<script>
+  const materias = {
+    3: [
+      {
+        nombre: "Hoja de cálculo aplicada",
+        descripcion: "En la hoja de cálculo se realizan operaciones con datos numéricos y de texto, como cálculos matemáticos, estadísticas, gráficos y organización de información en tablas. En esta capacitación aprenderán a como se realizan desde tablas de control de personal, estadísticas, y graficas de pastel entre otros.",
+        imagen: "calculo.jpg"
+      },
+      {
+        nombre: "Gestión de archivo de texto",
+        descripcion: "La gestión de archivos consiste en organizar, guardar, mover, copiar, eliminar y clasificar documentos y carpetas en una computadora o dispositivo. También incluye el uso de sistemas de almacenamiento y respaldo para mantener la información segura y accesible.",
+        imagen: "archivos.jpg"
+      }
+    ],
+    4: [
+      {
+        nombre: "Mantenimiento y redes de cómputo",
+        descripcion: "Se aprenden tareas como la instalación, configuración y reparación de redes y equipos de cómputo. También se identifican fallas y se aplican soluciones para mantener la red funcionando correctamente.",
+        imagen: "mantenimiento.jpg"
+      },
+      {
+        nombre: "Comunidades virtuales",
+        descripcion: "Se estudia cómo crear, gestionar y participar en espacios digitales colaborativos como foros, redes sociales, blogs y plataformas educativas. Se analizan sus usos, ventajas y riesgos.",
+        imagen: "comunidades.jpg"
+      }
+    ],
+    5: [
+      {
+        nombre: "Programación",
+        descripcion: "Se aprende a crear páginas web básicas usando el lenguaje HTML, estructurando contenido con etiquetas para textos, imágenes, enlaces y listas.",
+        imagen: "programacion.jpg"
+      },
+      {
+        nombre: "Sistemas de información",
+        descripcion: "Se explora cómo diseñar y usar sistemas que recopilan, almacenan y procesan datos para facilitar la toma de decisiones en empresas u organizaciones.",
+        imagen: "informacion.jpg"
+      }
+    ],
+    6: [
+      {
+        nombre: "Página web",
+        descripcion: "Se desarrolla el diseño y la construcción de sitios web combinando HTML, CSS y JavaScript, enfocados en estructura, estilo y funcionalidad interactiva.",
+        imagen: "pagina.jpg"
+      },
+      {
+        nombre: "Diseño digital",
+        descripcion: "Se utilizan programas gráficos (como inkscape) para crear contenido visual como logotipos, carteles, presentaciones y diseños web.",
+        imagen: "d.jpg"
+      }
+    ]
+  };
+
+  function mostrarMaterias(semestre) {
+    const contenedor = document.getElementById("materias-container");
+    contenedor.innerHTML = "";
+
+    const tabs = document.querySelectorAll('.tab');
+    tabs.forEach(tab => tab.classList.remove('active'));
+    tabs[semestre - 3].classList.add('active');
+
+    materias[semestre].forEach(materia => {
+      const div = document.createElement("div");
+      div.className = "materia";
+
+      const titulo = document.createElement("h3");
+      titulo.textContent = materia.nombre;
+
+      const desc = document.createElement("p");
+      desc.textContent = materia.descripcion;
+
+      const img = document.createElement("img");
+      img.src = materia.imagen;
+      img.alt = materia.nombre;
+
+      div.appendChild(titulo);
+      div.appendChild(desc);
+      div.appendChild(img);
+
+      contenedor.appendChild(div);
+    });
+  }
+
+  // Mostrar el 3er semestre por defecto
+  window.onload = () => {
+    mostrarMaterias(3);
+  };
+</script>
+
+</body>
+</html>
